@@ -1,5 +1,5 @@
 import { Copy } from "phosphor-react";
-import { handleCopy } from "../../utils";
+import { handleCopy } from "../../utils/utils";
 import { ContentClipboard } from "./styles";
 
 interface CopyToClipboardProps {
@@ -14,7 +14,10 @@ export function CopyToClipboard({
   setCopied,
 }: CopyToClipboardProps) {
   return (
-    <ContentClipboard onClick={() => handleCopy(result, setCopied)}>
+    <ContentClipboard
+      data-testid="ContentClipboard"
+      onClick={() => handleCopy(result, setCopied)}
+    >
       <Copy weight={copied ? "fill" : "regular"} size={20} color="#c4c4c4" />
       <span>{copied ? "Copied!" : "Copy to clipboard"}</span>
     </ContentClipboard>

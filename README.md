@@ -25,6 +25,7 @@ Um projeto para te salvar nas horas difíceis. A ideia dele é melhorar o seu c�
 
 - Hooks do react
 - Chamadas à API do chatGPT
+- Testes unitários com Jest
 
 ## 🎨 Layout
 
@@ -36,6 +37,7 @@ Um projeto para te salvar nas horas difíceis. A ideia dele é melhorar o seu c�
 - ReactJS
 - Styled Components
 - AXIOS
+- Jest
 
 # 💻 Como executar o projeto
 
