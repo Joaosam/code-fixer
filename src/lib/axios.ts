@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiKey = process.env.GPT_KEY;
 export const chatData = {
-  temperature: 0.2,
+  temperature: 0.4,
   max_tokens: 2048,
   top_p: 1,
   frequency_penalty: 0,

@@ -63,7 +63,6 @@ interface WrapperCopyProps {
 }
 
 export const WrapperCopy = styled.div<WrapperCopyProps>`
-  padding: 1.2rem;
   border-radius: 10px;
   background: ${(props) => props.theme["bg-body"]};
   display: flex;

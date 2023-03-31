@@ -8,7 +8,7 @@ export const WrapperClipboard = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem;
+  padding-inline: 1.2rem;
   background-color: ${(props) => props.theme["bg-secundary-2"]};
   color: ${(props) => props.theme["text-default"]};
   font-size: 1.2rem;
