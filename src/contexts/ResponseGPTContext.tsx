@@ -53,6 +53,7 @@ export function ResponseGPTProvider({ children }: { children: ReactNode }) {
       })
       .finally(() => {
         setIsLoading(false);
+        setCopied(false);
       });
   }
 

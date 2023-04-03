@@ -37,6 +37,7 @@ export function GenerateCodeProvider({ children }: { children: ReactNode }) {
       })
       .finally(() => {
         setIsLoading(false);
+        setCopied(false);
       });
   }
   return (
