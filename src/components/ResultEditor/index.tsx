@@ -13,7 +13,6 @@ export function ResultEditor() {
   const { language, result, copied, setCopied } =
     useContext(ResponseGPTContext);
 
-  console.log(result);
   return (
     <ContainerResultEditor>
       <WrapperClipboard>
