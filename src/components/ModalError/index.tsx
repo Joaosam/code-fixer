@@ -17,8 +17,7 @@ export function ModalError({ description, origin }: ModalErrorProps) {
     origin === "GenerateCode" ? setGenerateError(false) : setFixError(false);
   }
   return (
-    <Dialog.Root defaultOpen>
-      <Dialog.Trigger style={{ display: "none" }} />
+    <Dialog.Root defaultOpen onOpenChange={handleCloseModal}>
       <Dialog.Portal>
         <Overlay />
         <Content>
@@ -27,7 +26,7 @@ export function ModalError({ description, origin }: ModalErrorProps) {
             <WarningCircle size={24} />
           </Title>
           <CloseButton>
-            <X size={24} onClick={handleCloseModal} />
+            <X size={24} />
           </CloseButton>
           <Description>{description}</Description>
         </Content>
