@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from "react";
+import { useContext } from "react";
 import Editor from "@monaco-editor/react";
 import { ResponseGPTContext } from "../../contexts/ResponseGPTContext";
 import {
@@ -8,13 +8,20 @@ import {
   WrapperResultEditor,
 } from "./styles";
 import { CopyToClipboard } from "../CopyToClipboard";
+import { ModalError } from "../ModalError";
 
 export function ResultEditor() {
-  const { language, result, copied, setCopied } =
+  const { language, result, fixError, copied, setCopied } =
     useContext(ResponseGPTContext);
 
   return (
     <ContainerResultEditor>
+      {fixError && (
+        <ModalError
+          description="Não foi possível corrigir o código. Tente novamente mais tarde!"
+          origin="ResultEditor"
+        />
+      )}
       <WrapperClipboard>
         <div className="language">
           <span>{language}</span>

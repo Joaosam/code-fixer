@@ -5,10 +5,12 @@ interface GenerateCodeContextData {
   isLoading: boolean;
   result: string;
   copied: boolean;
+  generateError: boolean;
   setLanguageGenerateCode: (language: string) => void;
   setCopied: (copied: boolean) => void;
   setIsLoading: (isLoading: boolean) => void;
   generateCode: (code: string) => void;
+  setGenerateError: (generateError: boolean) => void;
 }
 
 export const GenerateCodeContext = createContext({} as GenerateCodeContextData);
@@ -16,6 +18,7 @@ export const GenerateCodeContext = createContext({} as GenerateCodeContextData);
 export function GenerateCodeProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState("");
+  const [generateError, setGenerateError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [languageGenerateCode, setLanguageGenerateCode] =
     useState("JAVASCRIPT");
@@ -32,8 +35,8 @@ export function GenerateCodeProvider({ children }: { children: ReactNode }) {
       .then((response) => {
         setResult(response.data?.choices[0].text);
       })
-      .catch((error) => {
-        setResult(error);
+      .catch(() => {
+        setGenerateError(true);
       })
       .finally(() => {
         setIsLoading(false);
@@ -46,10 +49,12 @@ export function GenerateCodeProvider({ children }: { children: ReactNode }) {
         isLoading,
         copied,
         result,
+        generateError,
         setIsLoading,
         generateCode,
         setCopied,
         setLanguageGenerateCode,
+        setGenerateError,
       }}
     >
       {children}

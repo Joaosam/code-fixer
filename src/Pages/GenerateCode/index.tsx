@@ -13,6 +13,7 @@ import { useContext } from "react";
 import { ActionButton } from "../../components/ActionButton";
 import { CopyToClipboard } from "../../components/CopyToClipboard";
 import { GenerateCodeContext } from "../../contexts/GenerateCodeContext";
+import { ModalError } from "../../components/ModalError";
 
 const generateCodeschema = yup.object().shape({
   code: yup.string().required("Code is required"),
@@ -21,7 +22,7 @@ const generateCodeschema = yup.object().shape({
 type GenerateCodeFormData = yup.InferType<typeof generateCodeschema>;
 
 export function GenerateCode() {
-  const { result, copied, setCopied, generateCode, isLoading } =
+  const { result, copied, generateError, setCopied, generateCode, isLoading } =
     useContext(GenerateCodeContext);
   const { handleSubmit, register, reset } = useForm<GenerateCodeFormData>({
     resolver: yupResolver(generateCodeschema),
@@ -34,6 +35,12 @@ export function GenerateCode() {
 
   return (
     <GenerateCodeContainer>
+      {generateError && (
+        <ModalError
+          description="Não foi possivel gerar o código. Tente novamente mais tarde!"
+          origin="GenerateCode"
+        />
+      )}
       <h1>Generate Code</h1>
       <CustomForm onSubmit={handleSubmit(handleGenerateCode)}>
         <CustomInput

@@ -15,6 +15,7 @@
     "@hookform/resolvers": "^3.0.0",
     "@monaco-editor/react": "^4.4.6",
     "@mui/material": "^5.11.14",
+    "@radix-ui/react-dialog": "^1.0.3",
     "@radix-ui/react-select": "^1.2.1",
     "@swc/jest": "^0.2.24",
     "@testing-library/jest-dom": "^5.16.5",

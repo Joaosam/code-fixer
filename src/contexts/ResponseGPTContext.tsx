@@ -5,6 +5,7 @@ interface ResponseGPTContextData {
   isLoading: boolean;
   language: string;
   result: string;
+  fixError: boolean;
   code: string;
   copied: boolean;
   setCopied: (copied: boolean) => void;
@@ -13,6 +14,7 @@ interface ResponseGPTContextData {
   getCurrentCode: (code: string) => void;
   getResponseGPT: () => void;
   handleCopy: () => void;
+  setFixError: (fixError: boolean) => void;
 }
 
 export const ResponseGPTContext = createContext({} as ResponseGPTContextData);
@@ -20,10 +22,10 @@ export const ResponseGPTContext = createContext({} as ResponseGPTContextData);
 export function ResponseGPTProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState("");
+  const [fixError, setFixError] = useState(false);
   const [code, setCode] = useState("");
   const [copied, setCopied] = useState(false);
   const [language, setLanguage] = useState("JAVASCRIPT");
-  const apiKey = process.env.GPT_KEY;
 
   function getCurrentCode(code: string) {
     setCode(code);
@@ -48,8 +50,8 @@ export function ResponseGPTProvider({ children }: { children: ReactNode }) {
       .then((response) => {
         setResult(response.data?.choices[0].text);
       })
-      .catch((error) => {
-        setResult(error);
+      .catch(() => {
+        setFixError(true);
       })
       .finally(() => {
         setIsLoading(false);
@@ -64,6 +66,7 @@ export function ResponseGPTProvider({ children }: { children: ReactNode }) {
         language,
         result,
         code,
+        fixError,
         copied,
         setCopied,
         setIsLoading,
@@ -71,6 +74,7 @@ export function ResponseGPTProvider({ children }: { children: ReactNode }) {
         getCurrentCode,
         getResponseGPT,
         handleCopy,
+        setFixError,
       }}
     >
       {children}
