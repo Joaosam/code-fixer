@@ -10,7 +10,7 @@ export const chatData = {
 };
 
 export const apiChatGPT = axios.create({
-  baseURL: "https://api.openai.com/v1/engines/text-davinci-003",
+  baseURL: "https://api.openai.com/v1/engines/gpt-3.5-turbo-instruct",
   headers: {
     "Content-Type": "application/json",
     Authorization: `${apiKey}`,
